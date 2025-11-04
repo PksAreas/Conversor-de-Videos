@@ -1,6 +1,6 @@
 from moviepy import VideoFileClip
 
-VERSAO_ATUAL = '0.2.0'
+VERSAO_ATUAL = '0.2.1'
 
 print('Bem Vindo ao Conversor de Video')
 print(f'Versão {VERSAO_ATUAL}')
@@ -14,10 +14,7 @@ menu = '''
 4 - mkv
 5 - webm
 6 - gif
-7 - mp3
-8 - wav
-9 - acc
-10 - ogg
+
               
 0 - Finalizar
 
@@ -34,31 +31,30 @@ def converter_mov_to_mp4(input_file):
         match option:
             case '1':
                 new_format = 'mp4'
+                newcodec = 'libx264'
             case '2':
                 new_format = 'avi'
+                newcodec = 'libx264'
             case '3':
                 new_format = 'mov'
+                newcodec = 'libx264'
             case '4':
                 new_format = 'mkv'
+                newcodec = 'libx264'
             case '5':
                 new_format = 'webm'
+                newcodec = 'libvpx'
+                audiocodec = 'libvorbis'
             case '6':
                 new_format = 'gif'
-            case '7':
-                new_format = 'mp3'
-            case '8':
-                new_format = 'wav'
-            case '9':
-                new_format = 'acc'
-            case '10':
-                new_format = 'ogg'
+                newcodec = 'libx264'
             case _:
                 print('opcao invalida')
 
         output_file = str(input_file).replace(f'.{input_format}',f'.{new_format}')               
         videos = VideoFileClip(input_file)
 
-        videos.write_videofile(f'output_movies/{output_file}', codec='libx264', audio_codec='aac')
+        videos.write_videofile(f'output_movies/{output_file}', codec=newcodec, audio_codec=audiocodec)
         videos.close()
 
         print('Conversão realizada com sucesso')
