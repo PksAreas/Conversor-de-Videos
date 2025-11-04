@@ -1,10 +1,5 @@
 from moviepy import VideoFileClip
 
-VERSAO_ATUAL = '0.2.1'
-
-print('Bem Vindo ao Conversor de Video')
-print(f'Versão {VERSAO_ATUAL}')
-
 menu = '''
 ----Selecione o formato de saida----
 
@@ -32,15 +27,20 @@ def converter_mov_to_mp4(input_file):
             case '1':
                 new_format = 'mp4'
                 newcodec = 'libx264'
+                audiocodec = 'libvorbis'
             case '2':
                 new_format = 'avi'
                 newcodec = 'libx264'
+                audiocodec = 'libvorbis'
             case '3':
                 new_format = 'mov'
                 newcodec = 'libx264'
+                audiocodec = 'libvorbis'
             case '4':
                 new_format = 'mkv'
                 newcodec = 'libx264'
+                audiocodec = 'libvorbis'
+                
             case '5':
                 new_format = 'webm'
                 newcodec = 'libvpx'
@@ -60,7 +60,3 @@ def converter_mov_to_mp4(input_file):
         print('Conversão realizada com sucesso')
     except Exception as e:
         print(f'Erro ao converter arquivo: {e}')
-    
-if __name__ == '__main__':
-    input_file = input('Caminho do Arquivo: ')
-    converter_mov_to_mp4(input_file)
