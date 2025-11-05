@@ -12,7 +12,6 @@ menu = '''
 
               
 0 - Finalizar
-
 ------------------------------------
 '''
 
@@ -23,6 +22,7 @@ def converter_mov_to_mp4(input_file):
 
         option = input(menu)
 
+        videos = VideoFileClip(input_file)
         match option:
             case '1':
                 new_format = 'mp4'
@@ -46,16 +46,17 @@ def converter_mov_to_mp4(input_file):
                 newcodec = 'libvpx'
                 audiocodec = 'libvorbis'
             case '6':
-                new_format = 'gif'
-                newcodec = 'libx264'
+                print('Convertendo Video...')
+                output_file = str(input_file).replace(f'.{input_format}',f'.gif')               
+                videos.write_gif(f'output_movies/{output_file}')
+                videos.close()
             case _:
                 print('opcao invalida')
 
-        output_file = str(input_file).replace(f'.{input_format}',f'.{new_format}')               
-        videos = VideoFileClip(input_file)
-
-        videos.write_videofile(f'output_movies/{output_file}', codec=newcodec, audio_codec=audiocodec)
-        videos.close()
+        if option != '6':
+            output_file = str(input_file).replace(f'.{input_format}',f'.{new_format}')               
+            videos.write_videofile(f'output_movies/{output_file}', codec=newcodec, audio_codec=audiocodec)
+            videos.close()
 
         print('Conversão realizada com sucesso')
     except Exception as e:

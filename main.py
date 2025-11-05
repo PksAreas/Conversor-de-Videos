@@ -1,14 +1,18 @@
 import conversor_video as video
 
-VERSAO_ATUAL = '0.2.1'
+VERSAO_ATUAL = '0.3.1'
 
 print('Bem Vindo ao Conversor de Video')
 print(f'V.: {VERSAO_ATUAL}')
 
 menu = '''
-1 - Converter Videos
-0 - Sair
+--------Menu--------
 
+1 - Converter Videos
+2 - Comprimir Videos
+
+0 - Sair
+--------------------
 >: '''
 
 if __name__ == '__main__':
